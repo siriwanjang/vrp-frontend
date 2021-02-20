@@ -1,0 +1,76 @@
+.DialogParent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f2c94c;
+  display: flex;
+}
+
+.LoginTextInput {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.FormGroup {
+  padding: 35px 55px;
+}
+.LoginTextInput input {
+  width: 280px;
+  padding: 8px 10px;
+  border: 1px solid white;
+  border-radius: 0 5px 5px 0;
+}
+
+.LoginTextInput img {
+  width: 20px;
+}
+
+.ImageParent {
+  background-color: white;
+  border: 1px solid white;
+  margin-right: -1px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 5px 0 0 5px;
+}
+
+.RegisterLink {
+  color: #6e5e5e;
+}
+
+.RegisterLink:hover {
+  color: #6e5e5e;
+}
+
+.LoginButton {
+  height: 100%;
+  width: 100%;
+  background-color: #6e5e5e;
+  border: none;
+  color: white;
+  letter-spacing: 4px;
+  padding: 20px;
+}
+
+.LoginButton:hover {
+  background-color: #584d4d;
+}
+
+.LoginButton:active {
+  background-color: #3d3535;
+}
+
+@media only screen and (max-width: 768px) {
+  .DialogParent {
+    flex-direction: column;
+  }
+  .LoginTextInput input {
+    width: 250px;
+  }
+
+  .FormGroup {
+    padding: 35px 20px;
+  }
+}
