@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 import classes from "./LoginPage.module.css";
 
@@ -18,6 +19,9 @@ class LoginPage extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     console.log(this.state);
+
+    const cookies = new Cookies();
+    cookies.set("token", "1", { path: "/" });
   };
 
   render() {
