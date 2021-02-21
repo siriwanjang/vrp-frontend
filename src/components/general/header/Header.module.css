@@ -1,0 +1,51 @@
+.Header {
+  position: fixed;
+  height: var(--headerH);
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #6e5e5e;
+  display: flex;
+  z-index: 99;
+}
+
+.HeaderReservedSpace {
+  height: var(--headerH);
+  width: 100%;
+}
+
+.NavBrand img {
+  height: var(--headerH);
+  margin-right: 30px;
+}
+
+.NavItem {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  margin-right: 25px;
+  border-bottom: 5px solid #6e5e5e;
+  color: white;
+  font-weight: bold;
+}
+.NavItem:hover {
+  color: white;
+  text-decoration: none;
+  border-bottom: 5px solid white;
+}
+.RightNav {
+  margin-left: auto;
+}
+
+.UserItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.UserItem img {
+  height: 70%;
+  margin-right: 15px;
+}
