@@ -65,7 +65,13 @@ class LoginPage extends Component {
             </div>
           </div>
           <div>
-            <button type="submit" className={classes.LoginButton}>
+            <button
+              type="submit"
+              className={classes.LoginButton}
+              onClick={() => {
+                window.location.href = "/";
+              }}
+            >
               LOGIN
             </button>
           </div>
