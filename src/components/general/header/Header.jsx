@@ -20,7 +20,12 @@ class Header extends Component {
           <Link className={classes.NavItem}>
             <span>Result</span>
           </Link>
-          <div className={[classes.RightNav, classes.UserItem].join(" ")}>
+          <div
+            className={[classes.RightNav, classes.UserItem].join(" ")}
+            onClick={() => {
+              window.location.href = "/login";
+            }}
+          >
             <img src={nav_user_icon} alt="" />
             <span>Username</span>
           </div>
