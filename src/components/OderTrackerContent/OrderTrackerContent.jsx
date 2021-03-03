@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
-import OrderCard from "../order_card/OrderCard";
-import classes from "./HomeContent.module.css";
+import OrderCard from "./order_card/OrderCard";
+import classes from "./OrderTrackerContent.module.css";
 
 class HomeContent extends Component {
   state = {};
