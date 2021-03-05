@@ -1,18 +1,11 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import InnerContainerHOC from "../general/InnerContainerHOC/InnerContainerHOC";
 import classes from "./HomePageContent.module.css";
 class HomePageContent extends Component {
   state = {};
   render() {
     return (
-      <Container
-        style={{
-          margin: "20px auto",
-          backgroundColor: "white",
-          overflow: "hidden",
-          padding: "0 25px",
-        }}
-      >
+      <InnerContainerHOC>
         <div className={classes.ContentHeader}>
           Money Delivery
           <hr />
@@ -31,7 +24,7 @@ class HomePageContent extends Component {
             <li>Logout</li>
           </ul>
         </div>
-      </Container>
+      </InnerContainerHOC>
     );
   }
 }

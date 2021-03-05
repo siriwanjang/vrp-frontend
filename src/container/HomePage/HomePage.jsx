@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ContainerHOC from "../../components/general/ContainerHOC/ContainerHOC";
 import Header from "../../components/general/header/Header";
 import HomePageContent from "../../components/homepage/HomePageContent";
 
@@ -7,10 +8,10 @@ class HomePage extends Component {
   state = {};
   render() {
     return (
-      <div style={{ backgroundColor: "#F2F2F2", overflow: "hidden" }}>
+      <ContainerHOC>
         <Header />
         <HomePageContent />
-      </div>
+      </ContainerHOC>
     );
   }
 }

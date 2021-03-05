@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
 import { Link } from "react-router-dom";
 
 import classes from "./OrderTrackerContent.module.css";
 
 import ColorPicker from "./color_picker/ColorPicker";
+import PageHeader from "../general/PageHeader/PageHeader";
+import InnerContainerHOC from "../general/InnerContainerHOC/InnerContainerHOC";
 
 class HomeContent extends Component {
   state = {};
@@ -35,7 +36,10 @@ class HomeContent extends Component {
     ];
 
     const tbody = test_data.map((elem, index) => (
-      <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
+      <tr
+        key={elem.order_id}
+        className={index % 2 === 0 ? classes.OddRow : null}
+      >
         <td>
           <input type="checkbox" />
         </td>
@@ -89,7 +93,10 @@ class HomeContent extends Component {
       },
     ];
     const deli_tbody = test_deli_data.map((elem, index) => (
-      <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
+      <tr
+        key={elem.order_id}
+        className={index % 2 === 0 ? classes.OddRow : null}
+      >
         <td>{elem.order_id}</td>
         <td>{elem.node_count}</td>
         <td>{elem.distance}</td>
@@ -110,18 +117,9 @@ class HomeContent extends Component {
       </tr>
     ));
     return (
-      <Container
-        style={{
-          margin: "20px auto",
-          backgroundColor: "white",
-          overflow: "hidden",
-          padding: "0 25px",
-        }}
-      >
-        <div className={classes.ContentHeader}>
-          Order Tracker
-          <hr />
-        </div>
+      <InnerContainerHOC>
+        <PageHeader headerTitle="Order Tracker" />
+
         <div className={classes.ContentBody}>
           <input type="date" style={{ marginBottom: 15 }} />
           <div
@@ -184,7 +182,7 @@ class HomeContent extends Component {
             </div>
           </div>
         </div>
-      </Container>
+      </InnerContainerHOC>
     );
   }
 }
