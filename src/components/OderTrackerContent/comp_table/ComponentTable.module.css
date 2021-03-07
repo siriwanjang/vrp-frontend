@@ -1,0 +1,19 @@
+.TableStyle {
+  width: 100%;
+}
+.TableStyle > thead {
+  background-color: #6e5e5e;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 18px;
+}
+
+.TableStyle > thead th {
+  padding: 8px 0;
+}
+
+.TableStyle > tbody td {
+  text-align: center;
+  padding: 15px 0;
+}

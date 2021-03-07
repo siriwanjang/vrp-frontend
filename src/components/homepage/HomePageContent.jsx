@@ -1,27 +1,35 @@
 import React, { Component } from "react";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
+import { Link } from "react-router-dom";
 import classes from "./HomePageContent.module.css";
+import PageHeader from "../General/PageHeader/PageHeader";
 class HomePageContent extends Component {
   state = {};
   render() {
     return (
       <InnerContainerHOC>
-        <div className={classes.ContentHeader}>
-          Money Delivery
-          <hr />
-        </div>
-        <div>
-          <h5>Order Management</h5>
+        <PageHeader headerTitle="Money Delivery" />
+
+        <div className={classes.Section}>
+          <h5 className={classes.SectionHeader}>Order Management</h5>
           <ul>
-            <li>Order Tracker</li>
-            <li>Result</li>
+            <li>
+              <Link to="order_tracker">Order Tracker</Link>
+            </li>
+            <li>
+              <Link>Result</Link>
+            </li>
           </ul>
         </div>
-        <div>
-          <h5>Other Setting</h5>
+        <div className={classes.Section}>
+          <h5 className={classes.SectionHeader}>Other Setting</h5>
           <ul>
-            <li>Change Password</li>
-            <li>Logout</li>
+            <li>
+              <Link>Change Password</Link>
+            </li>
+            <li>
+              <Link>Logout</Link>
+            </li>
           </ul>
         </div>
       </InnerContainerHOC>

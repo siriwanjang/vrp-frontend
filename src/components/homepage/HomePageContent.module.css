@@ -1,15 +1,7 @@
-.ContentHeader {
-  margin-top: 35px;
-
-  font-size: 32px;
+.Section li {
+  margin: 10px 0;
 }
 
-.OrderSectionHeader {
-  font-weight: bold;
-  font-size: 22px;
-  margin-bottom: 15px;
-}
-
-.OrderSectionBody {
-  margin-bottom: 15px;
+.SectionHeader {
+  padding-left: 10px;
 }

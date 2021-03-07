@@ -6,6 +6,8 @@ import classes from "./OrderTrackerContent.module.css";
 import ColorPicker from "./color_picker/ColorPicker";
 import PageHeader from "../General/PageHeader/PageHeader";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
+import MapComponent from "../General/MapComponent/MapComponent";
+import ComponentTable from "./comp_table/ComponentTable";
 
 class HomeContent extends Component {
   state = {};
@@ -116,63 +118,39 @@ class HomeContent extends Component {
 
         <div className={classes.ContentBody}>
           <input type="date" style={{ marginBottom: 15 }} />
-          <div
-            style={{
-              height: 480,
-              border: "1px solid darkgrey",
-              position: "relative",
-              marginBottom: 15,
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              MAP
-            </div>
-          </div>
+          <MapComponent />
           <div className={classes.OrderSectionHeader}>Order</div>
           <div className={classes.OrderSectionBody}>
             <div style={{ overflow: "hidden", borderRadius: 5 }}>
-              <table className={classes.TableStyle}>
-                <thead>
-                  <tr>
-                    <th>
-                      <input type="checkbox" />
-                    </th>
-                    <th>Color</th>
-                    <th>Order No.</th>
-                    <th>Node</th>
-                    <th>Distance</th>
-                    <th>ETC.</th>
-                    <th>Order Create Date</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>{tbody}</tbody>
-              </table>
+              <ComponentTable
+                head={[
+                  { type: "checkbox", text: "" },
+                  { type: "text", text: "Color" },
+                  { type: "text", text: "Order No." },
+                  { type: "text", text: "Node" },
+                  { type: "text", text: "Distance" },
+                  { type: "text", text: "ETC." },
+                  { type: "text", text: "Order Create Date" },
+                  { type: "text", text: "" },
+                ]}
+                body={tbody}
+              />
             </div>
           </div>
           <div className={classes.OrderSectionHeader}>Delivering</div>
           <div className={classes.OrderSectionBody}>
             <div style={{ overflow: "hidden", borderRadius: 5 }}>
-              <table className={classes.TableStyle}>
-                <thead>
-                  <tr>
-                    <th>Order No.</th>
-                    <th>Node</th>
-                    <th>Distance</th>
-                    <th>ETC.</th>
-                    <th>Order Create Date</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>{deli_tbody}</tbody>
-              </table>
+              <ComponentTable
+                head={[
+                  { type: "text", text: "Order No." },
+                  { type: "text", text: "Node" },
+                  { type: "text", text: "Distance" },
+                  { type: "text", text: "ETC." },
+                  { type: "text", text: "Order Create Date" },
+                  { type: "text", text: "" },
+                ]}
+                body={deli_tbody}
+              />
             </div>
           </div>
         </div>

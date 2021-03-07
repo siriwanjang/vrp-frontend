@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import PageHeader from "../General/PageHeader/PageHeader";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
+import MapComponent from "../General/MapComponent/MapComponent";
+import Section from "./section/Section";
 
 class OrderDetailContent extends Component {
   state = {};
@@ -15,39 +17,21 @@ class OrderDetailContent extends Component {
         </Link>
         <PageHeader headerTitle="Order Detail" />
 
-        <div
-          style={{
-            height: 480,
-            border: "1px solid darkgrey",
-            position: "relative",
-            marginBottom: 15,
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            MAP
-          </div>
-        </div>
+        <MapComponent />
         <div>
           <div>
             <Button color="success">Start</Button>
           </div>
-          {/* Order Detail Section */}
-          <div style={{ marginTop: 20 }}>
-            <h4>Order Detail</h4>
+
+          <Section sectionTitle="Order Detail">
             <div style={{ marginLeft: 20 }}>Number Of Node</div>
             <div style={{ marginLeft: 20 }}>Estimate Distance</div>
             <div style={{ marginLeft: 20 }}>Estimate Time To Complete</div>
             <div style={{ marginLeft: 20 }}>Order Create Date</div>
-          </div>
-          <div style={{ marginTop: 20 }}>
-            <h4>Location Detail</h4>
+          </Section>
+          {/* Order Detail Section */}
+
+          <Section sectionTitle="Location Detail">
             <div>
               <div style={{ marginLeft: 20 }}>
                 1. from <strong>Depot</strong> to <strong>Location Placeholder number 1</strong>
@@ -69,7 +53,7 @@ class OrderDetailContent extends Component {
               <div style={{ marginLeft: 40 }}>Distance </div>
               <div style={{ marginLeft: 40 }}>Estimate Time Arrival</div>
             </div>
-          </div>
+          </Section>
         </div>
       </InnerContainerHOC>
     );
