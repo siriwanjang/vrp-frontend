@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import ContainerHOC from "../../components/general/ContainerHOC/ContainerHOC";
-import Header from "../../components/general/header/Header";
+import ContainerHOC from "../../components/General/ContainerHOC/ContainerHOC";
+import Header from "../../components/General/header/Header";
 import OrderTrackerContent from "../../components/OderTrackerContent/OrderTrackerContent";
+
 class OrderTrackerPage extends Component {
   state = {};
   render() {

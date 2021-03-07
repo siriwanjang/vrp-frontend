@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import ContainerHOC from "../../components/general/ContainerHOC/ContainerHOC";
-import Header from "../../components/general/header/Header";
+import ContainerHOC from "../../components/General/ContainerHOC/ContainerHOC";
+import Header from "../../components/General/header/Header";
 import HomePageContent from "../../components/homepage/HomePageContent";
 
 // import HomeContent from "../../components/homepage/content_section/HomeContent";

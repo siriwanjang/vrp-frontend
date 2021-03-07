@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InnerContainerHOC from "../general/InnerContainerHOC/InnerContainerHOC";
+import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
 import classes from "./HomePageContent.module.css";
 class HomePageContent extends Component {
   state = {};

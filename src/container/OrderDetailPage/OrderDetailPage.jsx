@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import Header from "../../components/general/header/Header";
-import { Container } from "reactstrap";
+import Header from "../../components/General/header/Header";
 import OrderDetailContent from "../../components/OrderDetailContent/OrderDetailContent";
-import ContainerHOC from "../../components/general/ContainerHOC/ContainerHOC";
+import ContainerHOC from "../../components/General/ContainerHOC/ContainerHOC";
 
 class OrderDetailPage extends Component {
   state = {};

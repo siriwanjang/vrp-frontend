@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import classes from "./OrderDetailContent.module.css";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
-import PageHeader from "../general/PageHeader/PageHeader";
-import InnerContainerHOC from "../general/InnerContainerHOC/InnerContainerHOC";
+import PageHeader from "../General/PageHeader/PageHeader";
+import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
 
 class OrderDetailContent extends Component {
   state = {};
@@ -50,24 +50,21 @@ class OrderDetailContent extends Component {
             <h4>Location Detail</h4>
             <div>
               <div style={{ marginLeft: 20 }}>
-                1. from <strong>Depot</strong> to{" "}
-                <strong>Location Placeholder number 1</strong>
+                1. from <strong>Depot</strong> to <strong>Location Placeholder number 1</strong>
               </div>
               <div style={{ marginLeft: 40 }}>Distance </div>
               <div style={{ marginLeft: 40 }}>Estimate Time Arrival</div>
             </div>
             <div>
               <div style={{ marginLeft: 20 }}>
-                1. from <strong>Depot</strong> to{" "}
-                <strong>Location Placeholder number 1</strong>
+                1. from <strong>Depot</strong> to <strong>Location Placeholder number 1</strong>
               </div>
               <div style={{ marginLeft: 40 }}>Distance </div>
               <div style={{ marginLeft: 40 }}>Estimate Time Arrival</div>
             </div>
             <div>
               <div style={{ marginLeft: 20 }}>
-                1. from <strong>Depot</strong> to{" "}
-                <strong>Location Placeholder number 1</strong>
+                1. from <strong>Depot</strong> to <strong>Location Placeholder number 1</strong>
               </div>
               <div style={{ marginLeft: 40 }}>Distance </div>
               <div style={{ marginLeft: 40 }}>Estimate Time Arrival</div>
