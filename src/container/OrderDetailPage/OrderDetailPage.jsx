@@ -10,9 +10,7 @@ class OrderDetailPage extends Component {
     return (
       <ContainerHOC>
         <Header />
-        <Container>
-          <OrderDetailContent />
-        </Container>
+        <OrderDetailContent />
       </ContainerHOC>
     );
   }
