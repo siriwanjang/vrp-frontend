@@ -4,20 +4,23 @@ import classes from "./ComponentTable.module.css";
 class ComponentTable extends Component {
   state = {};
   render() {
-    console.log(this.props.head);
     const th_elem = this.props.head.map((elem) => {
+      let ret_elem;
       switch (elem.type) {
         case "text":
-          return <th>{elem.text}</th>;
+          ret_elem = <th>{elem.text}</th>;
+          break;
         case "checkbox":
-          return (
+          ret_elem = (
             <th>
               <input type="checkbox" />
             </th>
           );
+          break;
         default:
           break;
       }
+      return ret_elem;
     });
     return (
       <table className={classes.TableStyle}>

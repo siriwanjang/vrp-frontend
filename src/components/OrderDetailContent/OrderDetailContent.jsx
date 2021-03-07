@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./OrderDetailContent.module.css";
+// import classes from "./OrderDetailContent.module.css";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import PageHeader from "../General/PageHeader/PageHeader";
