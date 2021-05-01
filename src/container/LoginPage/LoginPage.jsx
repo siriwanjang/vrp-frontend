@@ -41,6 +41,9 @@ class LoginPage extends Component {
             case "UserAPIUserAPI_userLogin_InvalidUsernamePassword":
               error_msg = "Invalid Username or Password";
               break;
+            default:
+              error_msg = "Invalid Username or Password";
+              break;
           }
           this.setState({ login_error_text: error_msg, login_error: true });
         }
