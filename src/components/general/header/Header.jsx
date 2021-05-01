@@ -20,7 +20,7 @@ class Header extends Component {
           <Link to="/order_tracker" className={classes.NavItem}>
             <span>Order</span>
           </Link>
-          <Link className={classes.NavItem}>
+          <Link to="#" className={classes.NavItem}>
             <span>Result</span>
           </Link>
           <div
