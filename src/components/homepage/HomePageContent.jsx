@@ -1,11 +1,22 @@
 import React, { Component } from "react";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import classes from "./HomePageContent.module.css";
 import PageHeader from "../General/PageHeader/PageHeader";
+import Cookies from "universal-cookie";
 class HomePageContent extends Component {
-  state = {};
+  state = { is_logout: false };
+  logoutHandler = (event) => {
+    const cookies = new Cookies();
+    cookies.remove("logged_in");
+    console.log("logout");
+    this.setState({ is_logout: true });
+  };
   render() {
+    const { is_logout } = this.state;
+    if (is_logout === true) {
+      return <Redirect to="/login" />;
+    }
     return (
       <InnerContainerHOC>
         <PageHeader headerTitle="Money Delivery" />
@@ -17,7 +28,7 @@ class HomePageContent extends Component {
               <Link to="order_tracker">Order Tracker</Link>
             </li>
             <li>
-              <Link>Result</Link>
+              <Link to="#">Result</Link>
             </li>
           </ul>
         </div>
@@ -25,10 +36,12 @@ class HomePageContent extends Component {
           <h5 className={classes.SectionHeader}>Other Setting</h5>
           <ul>
             <li>
-              <Link>Change Password</Link>
+              <Link to="#">Change Password</Link>
             </li>
             <li>
-              <Link>Logout</Link>
+              <Link to="#" onClick={this.logoutHandler}>
+                Logout
+              </Link>
             </li>
           </ul>
         </div>
