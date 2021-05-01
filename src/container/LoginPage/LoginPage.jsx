@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Cookies from "universal-cookie";
+import api from "../../API";
+// import axios
 
 import classes from "./LoginPage.module.css";
 
@@ -9,21 +11,55 @@ import pass_icon from "../../assets/image/icon/pass-icon.png";
 import krungsri_logo from "../../assets/image/logo/logo-krungsri.png";
 
 class LoginPage extends Component {
-  state = {};
+  state = { red_to_homepage: false, login_error_text: "", login_error: false };
   inputChangeHandler = (event) => {
-    console.log(event.target.name);
     const elem_target = event.target;
     this.setState({ [elem_target.name]: elem_target.value });
   };
   submitHandler = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    const username = this.state.username;
+    const password = this.state.password;
 
     const cookies = new Cookies();
-    cookies.set("token", "1", { path: "/" });
+
+    api
+      .post("/api", {
+        api: "UserAPI",
+        method: "userLogin",
+        data: { username: username, password: password },
+      })
+      .then((res) => {
+        const result = res.data;
+        if (result.status.success === true) {
+          // console.log(result);
+          cookies.set("logged_in", "1", { path: "/" });
+          this.setState({ red_to_homepage: true });
+        } else {
+          let error_msg = "";
+          switch (result.status.description) {
+            case "UserAPIUserAPI_userLogin_InvalidUsernamePassword":
+              error_msg = "Invalid Username or Password";
+              break;
+          }
+          this.setState({ login_error_text: error_msg, login_error: true });
+        }
+      });
   };
 
+  componentDidMount() {
+    const cookies = new Cookies();
+    const is_login = cookies.get("logged_in") === "1";
+    console.log(is_login);
+    if (is_login === true) {
+      this.setState({ red_to_homepage: true });
+    }
+  }
+
   render() {
+    if (this.state.red_to_homepage) {
+      return <Redirect to="/" />;
+    }
     return (
       <div style={{ position: "relative", height: "100vh", width: "100%" }}>
         <form className={classes.DialogParent} onSubmit={this.submitHandler}>
@@ -61,15 +97,22 @@ class LoginPage extends Component {
                   Register
                 </Link>
               </div>
+              <div>
+                {this.state.login_error ? (
+                  <span style={{ color: "red" }}>{this.state.login_error_text}</span>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
           <div>
             <button
               type="submit"
               className={classes.LoginButton}
-              onClick={() => {
-                window.location.href = "/";
-              }}
+              // onClick={() => {
+              //   window.location.href = "/";
+              // }}
             >
               LOGIN
             </button>
