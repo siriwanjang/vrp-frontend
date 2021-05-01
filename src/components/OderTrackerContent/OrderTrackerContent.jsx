@@ -1,57 +1,98 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import api from "../../API";
 
 import classes from "./OrderTrackerContent.module.css";
 
 import ColorPicker from "./color_picker/ColorPicker";
+
 import PageHeader from "../General/PageHeader/PageHeader";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
 import MapComponent from "../General/MapComponent/MapComponent";
 import ComponentTable from "./comp_table/ComponentTable";
+class OrderTrackerContent extends Component {
+  state = { order_list: null, deli_order: null, all_location_list: [] };
 
-class HomeContent extends Component {
-  state = {};
+  componentDidMount() {
+    api.post("api", { api: "OrderAPI", method: "userGetOrderList" }, {}).then((res) => {
+      const result = res.data;
+      // console.log(result);
+      if (result.status.success === true) {
+        // console.log(result.data);
+        const order_list = result.data.order;
+        const deli_order_list = result.data.deli_order;
+        const tmp_all_loc_list = [];
+        if (order_list.length > 0) {
+          for (let e_order of order_list) {
+            tmp_all_loc_list.push(...e_order.location_list);
+            // console.log(e_order.location_list);
+          }
+        }
+        if (deli_order_list.length > 0) {
+          for (let e_order of deli_order_list) {
+            tmp_all_loc_list.push(...e_order.location_list);
+            // console.log(e_order.location_list);
+          }
+        }
+        // console.log(tmp_all_loc_list);
+        this.setState({
+          order_list: result.data.order,
+          deli_order_list: result.data.deli_order,
+          all_location_list: tmp_all_loc_list,
+        });
+      } else {
+      }
+    });
+  }
 
   render() {
-    const test_data = [
-      {
-        order_id: "2021022701",
-        node_count: 3,
-        distance: 2500,
-        estimate_time: 5400,
-        order_create_date: "2021-02-27 15:23:48",
-      },
-      {
-        order_id: "2021022702",
-        node_count: 3,
-        distance: 1800,
-        estimate_time: 4500,
-        order_create_date: "2021-02-27 15:25:13",
-      },
-      {
-        order_id: "2021022703",
-        node_count: 3,
-        distance: 4000,
-        estimate_time: 6600,
-        order_create_date: "2021-02-27 15:27:52",
-      },
-    ];
+    const { order_list, deli_order_list } = this.state;
 
-    const tbody = test_data.map((elem, index) => (
-      <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
-        <td>
-          <input type="checkbox" />
-        </td>
-        <td>
-          <ColorPicker />
-        </td>
-        <td>{elem.order_id}</td>
-        <td>{elem.node_count}</td>
-        <td>{elem.distance}</td>
-        <td>{elem.estimate_time}</td>
-        <td>{elem.order_create_date}</td>
-        <td>
-          <Link to="/order_detail">
+    let tbody_order = null;
+    if (Array.isArray(order_list) === true) {
+      tbody_order = order_list.map((elem, index) => (
+        <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
+          <td>
+            <input type="checkbox" />
+          </td>
+          <td>
+            <ColorPicker />
+          </td>
+          <td>{elem.order_id}</td>
+          <td>{elem.node_num}</td>
+          <td>{elem.distance}</td>
+          <td>{elem.estimate_time}</td>
+          <td>{elem.create_date}</td>
+          <td>
+            <Link to="/order_detail">
+              <button
+                style={{
+                  backgroundColor: "#6E5E5E",
+                  color: "white",
+                  border: "1px solid #6E5E5E",
+                  padding: "3px 10px",
+                }}
+                // onClick=>
+              >
+                VIEW
+              </button>
+            </Link>
+          </td>
+        </tr>
+      ));
+    }
+    // console.log(deli_order_list);
+
+    let deli_tbody;
+    if (Array.isArray(deli_order_list) === true) {
+      deli_tbody = deli_order_list.map((elem, index) => (
+        <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
+          <td>{elem.order_id}</td>
+          <td>{elem.node_count}</td>
+          <td>{elem.distance}</td>
+          <td>{elem.estimate_time}</td>
+          <td>{elem.order_create_date}</td>
+          <td>
             <button
               style={{
                 backgroundColor: "#6E5E5E",
@@ -59,66 +100,23 @@ class HomeContent extends Component {
                 border: "1px solid #6E5E5E",
                 padding: "3px 10px",
               }}
-              // onClick=>
             >
               VIEW
             </button>
-          </Link>
-        </td>
-      </tr>
-    ));
+          </td>
+        </tr>
+      ));
+    }
 
-    const test_deli_data = [
-      {
-        order_id: "2021022701",
-        node_count: 3,
-        distance: 2500,
-        estimate_time: 5400,
-        order_create_date: "2021-02-27 15:23:48",
-      },
-      {
-        order_id: "2021022702",
-        node_count: 3,
-        distance: 1800,
-        estimate_time: 4500,
-        order_create_date: "2021-02-27 15:25:13",
-      },
-      {
-        order_id: "2021022703",
-        node_count: 3,
-        distance: 4000,
-        estimate_time: 6600,
-        order_create_date: "2021-02-27 15:27:52",
-      },
-    ];
-    const deli_tbody = test_deli_data.map((elem, index) => (
-      <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
-        <td>{elem.order_id}</td>
-        <td>{elem.node_count}</td>
-        <td>{elem.distance}</td>
-        <td>{elem.estimate_time}</td>
-        <td>{elem.order_create_date}</td>
-        <td>
-          <button
-            style={{
-              backgroundColor: "#6E5E5E",
-              color: "white",
-              border: "1px solid #6E5E5E",
-              padding: "3px 10px",
-            }}
-          >
-            VIEW
-          </button>
-        </td>
-      </tr>
-    ));
+    // console.log(deli_tbody);
+
     return (
       <InnerContainerHOC>
         <PageHeader headerTitle="Order Tracker" />
 
         <div className={classes.ContentBody}>
           <input type="date" style={{ marginBottom: 15 }} />
-          <MapComponent />
+          <MapComponent all_location_list={this.state.all_location_list} />
           <div className={classes.OrderSectionHeader}>Order</div>
           <div className={classes.OrderSectionBody}>
             <div style={{ overflow: "hidden", borderRadius: 5 }}>
@@ -133,7 +131,7 @@ class HomeContent extends Component {
                   { type: "text", text: "Order Create Date" },
                   { type: "text", text: "" },
                 ]}
-                body={tbody}
+                body={tbody_order}
               />
             </div>
           </div>
@@ -159,4 +157,4 @@ class HomeContent extends Component {
   }
 }
 
-export default HomeContent;
+export default OrderTrackerContent;
