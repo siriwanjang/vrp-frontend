@@ -13,6 +13,11 @@ class ColorPicker extends Component {
     this.setState({ open_picker: false, bg_color: color.hex });
   };
 
+  componentDidMount() {
+    // console.log(this.props.color);
+    this.setState({ bg_color: this.props.color });
+  }
+
   render() {
     return (
       <div style={{ position: "relative" }}>
@@ -25,7 +30,7 @@ class ColorPicker extends Component {
             backgroundColor: this.state.bg_color,
             cursor: "pointer",
           }}
-          onClick={this.showColorPickerHandler}
+          // onClick={this.showColorPickerHandler}
         ></div>
         {this.state.open_picker ? (
           <div style={{ position: "absolute", zIndex: 2, left: 36, top: 27 }}>
