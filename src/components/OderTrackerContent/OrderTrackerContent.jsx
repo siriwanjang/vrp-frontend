@@ -13,6 +13,26 @@ import ComponentTable from "./comp_table/ComponentTable";
 class OrderTrackerContent extends Component {
   state = { order_list: null, deli_order: null, all_location_list: [] };
 
+  getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  orderSelectHandler = (event) => {
+    const all_location_list = [...this.state.all_location_list];
+    const is_check = event.target.checked;
+    const order_id = event.target.getAttribute("data-order-id");
+    console.log(is_check, order_id);
+    // console.log(all_location_list);
+    const order_index = all_location_list.findIndex((elem) => elem.order_id === order_id);
+    all_location_list[order_index].is_show = is_check;
+    this.setState({ all_location_list: all_location_list });
+  };
+
   componentDidMount() {
     api.post("api", { api: "OrderAPI", method: "userGetOrderList" }, {}).then((res) => {
       const result = res.data;
@@ -21,28 +41,46 @@ class OrderTrackerContent extends Component {
         // console.log(result.data);
         const order_list = result.data.order;
         const deli_order_list = result.data.deli_order;
+
         const tmp_all_loc_list = [];
         if (order_list.length > 0) {
-          for (let e_order of order_list) {
-            tmp_all_loc_list.push(...e_order.location_list);
+          order_list.forEach((e_order, index) => {
+            const order_color = this.getRandomColor();
+            order_list[index].color = order_color;
+            tmp_all_loc_list.push({
+              order_id: e_order.order_id,
+              color: order_list[index].color,
+              location_list: e_order.location_list,
+              is_show: false,
+            });
             // console.log(e_order.location_list);
-          }
+          });
         }
         if (deli_order_list.length > 0) {
-          for (let e_order of deli_order_list) {
-            tmp_all_loc_list.push(...e_order.location_list);
+          deli_order_list.forEach((e_order, index) => {
+            const order_color = this.getRandomColor();
+            deli_order_list[index].color = order_color;
+            tmp_all_loc_list.push({
+              order_id: e_order.order_id,
+              color: deli_order_list[index].color,
+              location_list: e_order.location_list,
+              is_show: false,
+            });
             // console.log(e_order.location_list);
-          }
+          });
         }
-        // console.log(tmp_all_loc_list);
+        // console.log(order_list, deli_order_list);
         this.setState({
-          order_list: result.data.order,
-          deli_order_list: result.data.deli_order,
+          order_list: order_list,
+          deli_order_list: deli_order_list,
           all_location_list: tmp_all_loc_list,
         });
       } else {
       }
     });
+    // setTimeout(() => {
+    //   this.setState({ order_list: null, all_location_list: [] });
+    // }, 5000);
   }
 
   render() {
@@ -53,10 +91,14 @@ class OrderTrackerContent extends Component {
       tbody_order = order_list.map((elem, index) => (
         <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
           <td>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              data-order-id={elem.order_id}
+              onChange={this.orderSelectHandler}
+            />
           </td>
           <td>
-            <ColorPicker />
+            <ColorPicker color={elem.color} />
           </td>
           <td>{elem.order_id}</td>
           <td>{elem.node_num}</td>
@@ -119,7 +161,7 @@ class OrderTrackerContent extends Component {
           <MapComponent all_location_list={this.state.all_location_list} />
           <div className={classes.OrderSectionHeader}>Order</div>
           <div className={classes.OrderSectionBody}>
-            <div style={{ overflow: "hidden", borderRadius: 5 }}>
+            <div>
               <ComponentTable
                 head={[
                   { type: "checkbox", text: "" },
@@ -137,7 +179,7 @@ class OrderTrackerContent extends Component {
           </div>
           <div className={classes.OrderSectionHeader}>Delivering</div>
           <div className={classes.OrderSectionBody}>
-            <div style={{ overflow: "hidden", borderRadius: 5 }}>
+            <div>
               <ComponentTable
                 head={[
                   { type: "text", text: "Order No." },
