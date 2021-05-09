@@ -24,11 +24,13 @@ class OrderTrackerContent extends Component {
 
   orderSelectHandler = (event) => {
     const all_location_list = [...this.state.all_location_list];
+    // console.log(all_location_list);
     const is_check = event.target.checked;
     const order_id = event.target.getAttribute("data-order-id");
-    console.log(is_check, order_id);
+    // console.log(is_check, order_id);
     // console.log(all_location_list);
-    const order_index = all_location_list.findIndex((elem) => elem.order_id === order_id);
+    const order_index = all_location_list.findIndex((elem) => elem.route_id == order_id);
+    // console.log(order_index);
     all_location_list[order_index].is_show = is_check;
     this.setState({ all_location_list: all_location_list });
   };
@@ -36,7 +38,7 @@ class OrderTrackerContent extends Component {
   componentDidMount() {
     api.post("api", { api: "OrderAPI", method: "userGetOrderList" }, {}).then((res) => {
       const result = res.data;
-      // console.log(result);
+      // console.log(res);
       if (result.status.success === true) {
         // console.log(result.data);
         const order_list = result.data.order;
@@ -48,7 +50,7 @@ class OrderTrackerContent extends Component {
             const order_color = this.getRandomColor();
             order_list[index].color = order_color;
             tmp_all_loc_list.push({
-              order_id: e_order.order_id,
+              route_id: e_order.route_id,
               color: order_list[index].color,
               location_list: e_order.location_list,
               is_show: false,
@@ -61,7 +63,7 @@ class OrderTrackerContent extends Component {
             const order_color = this.getRandomColor();
             deli_order_list[index].color = order_color;
             tmp_all_loc_list.push({
-              order_id: e_order.order_id,
+              route_id: e_order.route_id,
               color: deli_order_list[index].color,
               location_list: e_order.location_list,
               is_show: false,
@@ -89,24 +91,24 @@ class OrderTrackerContent extends Component {
     let tbody_order = null;
     if (Array.isArray(order_list) === true) {
       tbody_order = order_list.map((elem, index) => (
-        <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
+        <tr key={elem.route_id} className={index % 2 === 0 ? classes.OddRow : null}>
           <td>
             <input
               type="checkbox"
-              data-order-id={elem.order_id}
+              data-order-id={elem.route_id}
               onChange={this.orderSelectHandler}
             />
           </td>
           <td>
             <ColorPicker color={elem.color} />
           </td>
-          <td>{elem.order_id}</td>
+          <td>{elem.route_id}</td>
           <td>{elem.node_num}</td>
           <td>{elem.distance}</td>
           <td>{elem.estimate_time}</td>
           <td>{elem.create_date}</td>
           <td>
-            <Link to="/order_detail">
+            <Link to={`/order_detail?route_id=${elem.route_id}`}>
               <button
                 style={{
                   backgroundColor: "#6E5E5E",
@@ -114,7 +116,6 @@ class OrderTrackerContent extends Component {
                   border: "1px solid #6E5E5E",
                   padding: "3px 10px",
                 }}
-                // onClick=>
               >
                 VIEW
               </button>
@@ -128,8 +129,8 @@ class OrderTrackerContent extends Component {
     let deli_tbody;
     if (Array.isArray(deli_order_list) === true) {
       deli_tbody = deli_order_list.map((elem, index) => (
-        <tr key={elem.order_id} className={index % 2 === 0 ? classes.OddRow : null}>
-          <td>{elem.order_id}</td>
+        <tr key={elem.route_id} className={index % 2 === 0 ? classes.OddRow : null}>
+          <td>{elem.route_id}</td>
           <td>{elem.node_count}</td>
           <td>{elem.distance}</td>
           <td>{elem.estimate_time}</td>
@@ -166,11 +167,11 @@ class OrderTrackerContent extends Component {
                 head={[
                   { type: "checkbox", text: "" },
                   { type: "text", text: "Color" },
-                  { type: "text", text: "Order No." },
+                  { type: "text", text: "Route No." },
                   { type: "text", text: "Node" },
                   { type: "text", text: "Distance" },
                   { type: "text", text: "ETC." },
-                  { type: "text", text: "Order Create Date" },
+                  { type: "text", text: "Route Create Date" },
                   { type: "text", text: "" },
                 ]}
                 body={tbody_order}
@@ -182,11 +183,11 @@ class OrderTrackerContent extends Component {
             <div>
               <ComponentTable
                 head={[
-                  { type: "text", text: "Order No." },
+                  { type: "text", text: "Route No." },
                   { type: "text", text: "Node" },
                   { type: "text", text: "Distance" },
                   { type: "text", text: "ETC." },
-                  { type: "text", text: "Order Create Date" },
+                  { type: "text", text: "Route Create Date" },
                   { type: "text", text: "" },
                 ]}
                 body={deli_tbody}

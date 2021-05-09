@@ -1,14 +1,59 @@
 import React, { Component } from "react";
 // import classes from "./OrderDetailContent.module.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import queryString from "query-string";
 import { Button } from "reactstrap";
 import PageHeader from "../General/PageHeader/PageHeader";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
 import MapComponent from "../General/MapComponent/MapComponent";
 import Section from "./section/Section";
 
+import api from "../../API";
+
 class OrderDetailContent extends Component {
-  state = {};
+  state = {
+    number_of_node: 0,
+    total_distance: 0,
+    total_time: 0,
+    order_create_date: "",
+    all_location_list: [],
+  };
+
+  componentDidMount() {
+    // console.log();
+    const route_id = queryString.parse(this.props.location.search).route_id;
+    api
+      .post("api", {
+        api: "OrderAPI",
+        method: "userGetOrderInfo",
+        data: {
+          route_id: route_id,
+        },
+      })
+      .then((res) => {
+        const result = res.data;
+        // console.log(result);
+        if (result.status.success === true) {
+          const res_data = result.data;
+          const route_info = res_data.route_info;
+          console.log(route_info);
+          this.setState({
+            number_of_node: route_info.node_num,
+            total_distance: route_info.distance,
+            total_time: route_info.estimate_time,
+            order_create_date: route_info.create_date,
+            all_location_list: [
+              {
+                route_id: route_info.route_id,
+                color: "#480D6D",
+                location_list: route_info.location_list,
+                is_show: true,
+              },
+            ],
+          });
+        }
+      });
+  }
   render() {
     return (
       <InnerContainerHOC>
@@ -17,17 +62,33 @@ class OrderDetailContent extends Component {
         </Link>
         <PageHeader headerTitle="Order Detail" />
 
-        <MapComponent />
+        <MapComponent all_location_list={this.state.all_location_list} />
         <div>
           <div>
             <Button color="success">Start</Button>
           </div>
 
           <Section sectionTitle="Order Detail">
-            <div style={{ marginLeft: 20 }}>Number Of Node</div>
-            <div style={{ marginLeft: 20 }}>Estimate Distance</div>
-            <div style={{ marginLeft: 20 }}>Estimate Time To Complete</div>
-            <div style={{ marginLeft: 20 }}>Order Create Date</div>
+            <table style={{ marginLeft: 20 }}>
+              <tbody>
+                <tr>
+                  <td>Number Of Node</td>
+                  <td style={{ paddingLeft: 20 }}>{this.state.number_of_node}</td>
+                </tr>
+                <tr>
+                  <td>Estimate Distance</td>
+                  <td style={{ paddingLeft: 20 }}>{this.state.total_distance}</td>
+                </tr>
+                <tr>
+                  <td>Estimate Time To Complete</td>
+                  <td style={{ paddingLeft: 20 }}>{this.state.total_time}</td>
+                </tr>
+                <tr>
+                  <td>Order Create Date</td>
+                  <td style={{ paddingLeft: 20 }}>{this.state.order_create_date}</td>
+                </tr>
+              </tbody>
+            </table>
           </Section>
           {/* Order Detail Section */}
 
@@ -60,4 +121,4 @@ class OrderDetailContent extends Component {
   }
 }
 
-export default OrderDetailContent;
+export default withRouter(OrderDetailContent);
