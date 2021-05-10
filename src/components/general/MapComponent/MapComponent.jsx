@@ -53,8 +53,8 @@ class MapComponent extends Component {
           map.Overlays.add(polyline);
         }
       }
-      const listOverlays = map.Overlays.list();
-      console.log(listOverlays);
+      // const listOverlays = map.Overlays.list();
+      // console.log(listOverlays);
     }
   }
 
