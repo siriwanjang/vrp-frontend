@@ -16,7 +16,7 @@ class OrderDetailContent extends Component {
     total_distance: 0,
     total_time: 0,
     order_create_date: "",
-    all_location_list: [],
+    all_location_list: undefined,
   };
 
   componentDidMount() {
@@ -36,7 +36,7 @@ class OrderDetailContent extends Component {
         if (result.status.success === true) {
           const res_data = result.data;
           const route_info = res_data.route_info;
-          console.log(route_info);
+          // console.log(route_info);
           this.setState({
             number_of_node: route_info.node_num,
             total_distance: route_info.distance,
@@ -55,6 +55,45 @@ class OrderDetailContent extends Component {
       });
   }
   render() {
+    let location_elem = [];
+    // console.log("all_location_list", );
+    if (typeof this.state.all_location_list === "object") {
+      const location_list = this.state.all_location_list[0].location_list;
+      location_list.sort((a, b) => a.sequence - b.sequence);
+      console.log(location_list);
+      location_elem = location_list.map((e_loc, index) => (
+        <div>
+          <div style={{ marginLeft: 20 }}>
+            {index + 1}. {e_loc.location.location_name}
+          </div>
+          <div style={{ marginLeft: 40 }}> Arrive at</div>
+          <div style={{ marginLeft: 40 }}> Depart at</div>
+          <div style={{ marginLeft: 40 }}> Service Time</div>
+          <div style={{ marginLeft: 40 }}> Location Type</div>
+        </div>
+      ));
+      const route_list = [];
+      location_list.forEach((e_loc, index) => {
+        // console.log(e_loc, index);
+        if (index !== 0 && index != location_list.length - 1) {
+          route_list.push(e_loc);
+        }
+        route_list.push(e_loc);
+
+        // console.log(e_loc);
+      });
+      for (let i = 0; i < route_list.length / 2; i++) {
+        const location_1 = route_list[i * 2].location;
+        const location_2 = route_list[i * 2 + 1].location;
+        // console.log(i, location_1.location_name, location_2.location_name);
+        let test = `${i + 1}. from ${location_1.location_name} to ${location_2.location_name}`;
+        console.log(test);
+        // console.log(i * 2, i * 2 + 1);
+      }
+    }
+    // this.state.all_location_list[0].location_list.forEach((elem, index) => {
+    //   console.log(elem.location_list);
+    // });
     return (
       <InnerContainerHOC>
         <Link style={{ color: "lightgray" }} to="/order_tracker">
@@ -93,6 +132,7 @@ class OrderDetailContent extends Component {
           {/* Order Detail Section */}
 
           <Section sectionTitle="Location Detail">
+            {location_elem}
             <div>
               <div style={{ marginLeft: 20 }}>
                 1. from <strong>Depot</strong> to <strong>Location Placeholder number 1</strong>
