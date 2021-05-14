@@ -2,7 +2,6 @@ import React, { Component } from "react";
 // import classes from "./OrderDetailContent.module.css";
 import queryString from "query-string";
 import { Link, withRouter } from "react-router-dom";
-import { Button } from "reactstrap";
 import PageHeader from "../General/PageHeader/PageHeader";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
 import MapComponent from "../General/MapComponent/MapComponent";
@@ -11,7 +10,7 @@ import LocationDetail from "./LocationOrder/LocationDetail";
 
 import api from "../../API";
 import Util from "../../assets/utility/Utility";
-class OrderDetailContent extends Component {
+class RouteDetailContent extends Component {
   state = {
     number_of_node: 0,
     total_distance: 0,
@@ -126,4 +125,4 @@ class OrderDetailContent extends Component {
   }
 }
 
-export default withRouter(OrderDetailContent);
+export default withRouter(RouteDetailContent);

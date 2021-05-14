@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import Header from "../../components/General/header/Header";
-import OrderDetailContent from "../../components/OrderDetailContent/OrderDetailContent";
+import RouteDetailContent from "../../components/RouteDetailContent/RouteDetailContent";
 import ContainerHOC from "../../components/General/ContainerHOC/ContainerHOC";
 
-class OrderDetailPage extends Component {
+class RouteDetailPage extends Component {
   state = {};
   render() {
     return (
       <ContainerHOC>
         <Header />
-        <OrderDetailContent />
+        <RouteDetailContent />
       </ContainerHOC>
     );
   }
 }
 
-export default OrderDetailPage;
+export default RouteDetailPage;
