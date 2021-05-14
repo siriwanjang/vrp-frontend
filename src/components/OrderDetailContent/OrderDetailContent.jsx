@@ -72,28 +72,7 @@ class OrderDetailContent extends Component {
           location_type={e_loc.location.location_type}
         />
       ));
-      const route_list = [];
-      location_list.forEach((e_loc, index) => {
-        // console.log(e_loc, index);
-        if (index !== 0 && index != location_list.length - 1) {
-          route_list.push(e_loc);
-        }
-        route_list.push(e_loc);
-
-        // console.log(e_loc);
-      });
-      for (let i = 0; i < route_list.length / 2; i++) {
-        const location_1 = route_list[i * 2].location;
-        const location_2 = route_list[i * 2 + 1].location;
-        // console.log(i, location_1.location_name, location_2.location_name);
-        let test = `${i + 1}. from ${location_1.location_name} to ${location_2.location_name}`;
-        console.log(test);
-        // console.log(i * 2, i * 2 + 1);
-      }
     }
-    // this.state.all_location_list[0].location_list.forEach((elem, index) => {
-    //   console.log(elem.location_list);
-    // });
     return (
       <InnerContainerHOC>
         <Link style={{ color: "lightgray" }} to="/order_tracker">
