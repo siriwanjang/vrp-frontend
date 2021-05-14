@@ -18,6 +18,7 @@ class ComponentTable extends Component {
           );
           break;
         default:
+          ret_elem = <th key={index}></th>;
           break;
       }
       return ret_elem;
