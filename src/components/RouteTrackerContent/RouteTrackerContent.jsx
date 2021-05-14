@@ -11,7 +11,17 @@ import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
 import MapComponent from "../General/MapComponent/MapComponent";
 import ComponentTable from "./comp_table/ComponentTable";
 class RouteTrackerContent extends Component {
-  state = { order_list: null, deli_order: null, all_location_list: [] };
+  state = {
+    order_list: null,
+    deli_order: null,
+    all_location_list: [],
+    err_msg: "",
+    date_selected: Util.datetime_converter(new Date(), "-")
+      .split(" ")[0]
+      .split("-")
+      .reverse()
+      .join("-"),
+  };
 
   getRandomColor() {
     var letters = "0123456789ABCDEF";
@@ -21,6 +31,62 @@ class RouteTrackerContent extends Component {
     }
     return color;
   }
+  renderOrderList = (res) => {
+    const result = res.data;
+    if (result.status.success === true) {
+      const order_list = result.data.order;
+      const deli_order_list = result.data.deli_order;
+
+      const tmp_all_loc_list = [];
+      if (order_list.length > 0) {
+        order_list.forEach((e_order, index) => {
+          const order_color = this.getRandomColor();
+          order_list[index].color = order_color;
+          tmp_all_loc_list.push({
+            route_id: e_order.route_id,
+            color: order_list[index].color,
+            location_list: e_order.location_list,
+            is_show: false,
+          });
+          // console.log(e_order.location_list);
+        });
+      }
+      if (deli_order_list.length > 0) {
+        deli_order_list.forEach((e_order, index) => {
+          const order_color = this.getRandomColor();
+          deli_order_list[index].color = order_color;
+          tmp_all_loc_list.push({
+            route_id: e_order.route_id,
+            color: deli_order_list[index].color,
+            location_list: e_order.location_list,
+            is_show: false,
+          });
+          // console.log(e_order.location_list);
+        });
+      }
+      // console.log(order_list, deli_order_list);
+      this.setState({
+        order_list: order_list,
+        deli_order_list: deli_order_list,
+        all_location_list: tmp_all_loc_list,
+      });
+    } else {
+      this.setState({
+        err_msg: result.status.description,
+        order_list: null,
+        deli_order_list: null,
+        all_location_list: null,
+      });
+    }
+  };
+
+  dateChangeHandler = (event) => {
+    const selected_date = event.target.value;
+    this.setState({ date_selected: event.target.value });
+    api
+      .post("api", { api: "OrderAPI", method: "userGetOrderList", data: { date: selected_date } })
+      .then(this.renderOrderList);
+  };
 
   orderSelectHandler = (event) => {
     const all_location_list = [...this.state.all_location_list];
@@ -36,53 +102,9 @@ class RouteTrackerContent extends Component {
   };
 
   componentDidMount() {
-    api.post("api", { api: "OrderAPI", method: "userGetOrderList" }, {}).then((res) => {
-      const result = res.data;
-      // console.log(res);
-      if (result.status.success === true) {
-        // console.log(result.data);
-        const order_list = result.data.order;
-        const deli_order_list = result.data.deli_order;
-
-        const tmp_all_loc_list = [];
-        if (order_list.length > 0) {
-          order_list.forEach((e_order, index) => {
-            const order_color = this.getRandomColor();
-            order_list[index].color = order_color;
-            tmp_all_loc_list.push({
-              route_id: e_order.route_id,
-              color: order_list[index].color,
-              location_list: e_order.location_list,
-              is_show: false,
-            });
-            // console.log(e_order.location_list);
-          });
-        }
-        if (deli_order_list.length > 0) {
-          deli_order_list.forEach((e_order, index) => {
-            const order_color = this.getRandomColor();
-            deli_order_list[index].color = order_color;
-            tmp_all_loc_list.push({
-              route_id: e_order.route_id,
-              color: deli_order_list[index].color,
-              location_list: e_order.location_list,
-              is_show: false,
-            });
-            // console.log(e_order.location_list);
-          });
-        }
-        // console.log(order_list, deli_order_list);
-        this.setState({
-          order_list: order_list,
-          deli_order_list: deli_order_list,
-          all_location_list: tmp_all_loc_list,
-        });
-      } else {
-      }
-    });
-    // setTimeout(() => {
-    //   this.setState({ order_list: null, all_location_list: [] });
-    // }, 5000);
+    api
+      .post("api", { api: "OrderAPI", method: "userGetOrderList", data: {} })
+      .then(this.renderOrderList);
   }
 
   render() {
@@ -123,6 +145,12 @@ class RouteTrackerContent extends Component {
           </td>
         </tr>
       ));
+    } else {
+      tbody_order = (
+        <tr>
+          <td colSpan={7}> Route Not Found </td>
+        </tr>
+      );
     }
     // console.log(deli_order_list);
 
@@ -151,17 +179,6 @@ class RouteTrackerContent extends Component {
       ));
     }
 
-    const today_date = new Date();
-
-    const seperator = "-";
-    const tody_date_str = Util.datetime_converter(today_date, seperator)
-      .split(" ")[0]
-      .split(seperator)
-      .reverse()
-      .join(seperator);
-
-    console.log(tody_date_str);
-
     return (
       <InnerContainerHOC>
         <Link style={{ color: "lightgray" }} to="/">
@@ -170,7 +187,12 @@ class RouteTrackerContent extends Component {
         <PageHeader headerTitle="Route Tracker" />
 
         <div className={classes.ContentBody}>
-          <input type="date" style={{ marginBottom: 15 }} value={tody_date_str} />
+          <input
+            type="date"
+            style={{ marginBottom: 15 }}
+            value={this.state.date_selected}
+            onChange={this.dateChangeHandler}
+          />
           <MapComponent all_location_list={this.state.all_location_list} />
           <div className={classes.OrderSectionHeader}>Route</div>
           <div className={classes.OrderSectionBody}>
