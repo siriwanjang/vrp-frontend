@@ -7,10 +7,10 @@ import PageHeader from "../General/PageHeader/PageHeader";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
 import MapComponent from "../General/MapComponent/MapComponent";
 import Section from "./section/Section";
-
-import api from "../../API";
 import LocationDetail from "./LocationOrder/LocationDetail";
 
+import api from "../../API";
+import Util from "../../assets/utility/Utility";
 class OrderDetailContent extends Component {
   state = {
     number_of_node: 0,
@@ -42,7 +42,7 @@ class OrderDetailContent extends Component {
             number_of_node: route_info.node_num,
             total_distance: route_info.distance,
             total_time: route_info.estimate_time,
-            order_create_date: route_info.create_date,
+            order_create_date: Util.datetime_converter(route_info.create_date),
             all_location_list: [
               {
                 route_id: route_info.route_id,
@@ -66,8 +66,8 @@ class OrderDetailContent extends Component {
         <LocationDetail
           seq_num={index + 1}
           location_name={e_loc.location.location_name}
-          arrive_at={e_loc.arrive_time}
-          depart_at={e_loc.depart_time}
+          arrive_at={Util.datetime_converter(e_loc.arrive_time)}
+          depart_at={Util.datetime_converter(e_loc.depart_time)}
           service_time={e_loc.service_time}
           location_type={e_loc.location.location_type}
         />

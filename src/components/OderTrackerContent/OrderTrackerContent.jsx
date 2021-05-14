@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import api from "../../API";
-
+import Util from "../../assets/utility/Utility";
 import classes from "./OrderTrackerContent.module.css";
 
 import ColorPicker from "./color_picker/ColorPicker";
@@ -106,7 +106,7 @@ class OrderTrackerContent extends Component {
           <td>{elem.node_num}</td>
           <td>{elem.distance}</td>
           <td>{elem.estimate_time}</td>
-          <td>{elem.create_date}</td>
+          <td>{Util.datetime_converter(elem.create_date)}</td>
           <td>
             <Link to={`/order_detail?route_id=${elem.route_id}`}>
               <button
