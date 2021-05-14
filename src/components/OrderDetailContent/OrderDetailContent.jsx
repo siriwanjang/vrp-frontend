@@ -112,19 +112,27 @@ class OrderDetailContent extends Component {
               <tbody>
                 <tr>
                   <td>Number Of Node</td>
-                  <td style={{ paddingLeft: 20 }}>{this.state.number_of_node}</td>
+                  <td style={{ paddingLeft: 20, fontWeight: "bold", color: "#F5B900" }}>
+                    {this.state.number_of_node}
+                  </td>
                 </tr>
                 <tr>
                   <td>Estimate Distance</td>
-                  <td style={{ paddingLeft: 20 }}>{this.state.total_distance}</td>
+                  <td style={{ paddingLeft: 20, fontWeight: "bold", color: "#F5B900" }}>
+                    {this.state.total_distance}
+                  </td>
                 </tr>
                 <tr>
                   <td>Estimate Time To Complete</td>
-                  <td style={{ paddingLeft: 20 }}>{this.state.total_time}</td>
+                  <td style={{ paddingLeft: 20, fontWeight: "bold", color: "#F5B900" }}>
+                    {this.state.total_time}
+                  </td>
                 </tr>
                 <tr>
                   <td>Order Create Date</td>
-                  <td style={{ paddingLeft: 20 }}>{this.state.order_create_date}</td>
+                  <td style={{ paddingLeft: 20, fontWeight: "bold", color: "#F5B900" }}>
+                    {this.state.order_create_date}
+                  </td>
                 </tr>
               </tbody>
             </table>
