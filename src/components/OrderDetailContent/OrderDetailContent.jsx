@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import classes from "./OrderDetailContent.module.css";
-import { Link, withRouter } from "react-router-dom";
 import queryString from "query-string";
+import { Link, withRouter } from "react-router-dom";
 import { Button } from "reactstrap";
 import PageHeader from "../General/PageHeader/PageHeader";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
@@ -9,6 +9,7 @@ import MapComponent from "../General/MapComponent/MapComponent";
 import Section from "./section/Section";
 
 import api from "../../API";
+import LocationDetail from "./LocationOrder/LocationDetail";
 
 class OrderDetailContent extends Component {
   state = {
@@ -62,15 +63,14 @@ class OrderDetailContent extends Component {
       location_list.sort((a, b) => a.sequence - b.sequence);
       console.log(location_list);
       location_elem = location_list.map((e_loc, index) => (
-        <div>
-          <div style={{ marginLeft: 20 }}>
-            {index + 1}. {e_loc.location.location_name}
-          </div>
-          <div style={{ marginLeft: 40 }}> Arrive at</div>
-          <div style={{ marginLeft: 40 }}> Depart at</div>
-          <div style={{ marginLeft: 40 }}> Service Time</div>
-          <div style={{ marginLeft: 40 }}> Location Type</div>
-        </div>
+        <LocationDetail
+          seq_num={index + 1}
+          location_name={e_loc.location.location_name}
+          arrive_at={e_loc.arrive_time}
+          depart_at={e_loc.depart_time}
+          service_time={e_loc.service_time}
+          location_type={e_loc.location.location_type}
+        />
       ));
       const route_list = [];
       location_list.forEach((e_loc, index) => {
@@ -102,7 +102,7 @@ class OrderDetailContent extends Component {
         <PageHeader headerTitle="Order Detail" />
 
         <MapComponent all_location_list={this.state.all_location_list} />
-        <div>
+        <div style={{ paddingBottom: 50 }}>
           <div>
             <Button color="success">Start</Button>
           </div>
@@ -131,30 +131,7 @@ class OrderDetailContent extends Component {
           </Section>
           {/* Order Detail Section */}
 
-          <Section sectionTitle="Location Detail">
-            {location_elem}
-            <div>
-              <div style={{ marginLeft: 20 }}>
-                1. from <strong>Depot</strong> to <strong>Location Placeholder number 1</strong>
-              </div>
-              <div style={{ marginLeft: 40 }}>Distance </div>
-              <div style={{ marginLeft: 40 }}>Estimate Time Arrival</div>
-            </div>
-            <div>
-              <div style={{ marginLeft: 20 }}>
-                1. from <strong>Depot</strong> to <strong>Location Placeholder number 1</strong>
-              </div>
-              <div style={{ marginLeft: 40 }}>Distance </div>
-              <div style={{ marginLeft: 40 }}>Estimate Time Arrival</div>
-            </div>
-            <div>
-              <div style={{ marginLeft: 20 }}>
-                1. from <strong>Depot</strong> to <strong>Location Placeholder number 1</strong>
-              </div>
-              <div style={{ marginLeft: 40 }}>Distance </div>
-              <div style={{ marginLeft: 40 }}>Estimate Time Arrival</div>
-            </div>
-          </Section>
+          <Section sectionTitle="Location Detail">{location_elem}</Section>
         </div>
       </InnerContainerHOC>
     );
