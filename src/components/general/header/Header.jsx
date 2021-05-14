@@ -17,7 +17,7 @@ class Header extends Component {
           <Link to="/" className={classes.NavItem}>
             <span>Home</span>
           </Link>
-          <Link to="/order_tracker" className={classes.NavItem}>
+          <Link to="/route_tracker" className={classes.NavItem}>
             <span>Route</span>
           </Link>
           {/* <Link to="#" className={classes.NavItem}>

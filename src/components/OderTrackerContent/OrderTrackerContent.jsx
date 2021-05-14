@@ -108,7 +108,7 @@ class OrderTrackerContent extends Component {
           <td>{elem.estimate_time}</td>
           <td>{Util.datetime_converter(elem.create_date)}</td>
           <td>
-            <Link to={`/order_detail?route_id=${elem.route_id}`}>
+            <Link to={`/route_detail?route_id=${elem.route_id}`}>
               <button
                 style={{
                   backgroundColor: "#6E5E5E",

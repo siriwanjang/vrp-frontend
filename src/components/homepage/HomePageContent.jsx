@@ -25,7 +25,7 @@ class HomePageContent extends Component {
           <h5 className={classes.SectionHeader}>Order Management</h5>
           <ul>
             <li>
-              <Link to="order_tracker">Order Tracker</Link>
+              <Link to="route_tracker">Route Tracker</Link>
             </li>
             <li>
               <Link to="#">Result</Link>

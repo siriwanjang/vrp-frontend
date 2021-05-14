@@ -76,7 +76,7 @@ class OrderDetailContent extends Component {
     }
     return (
       <InnerContainerHOC>
-        <Link style={{ color: "lightgray" }} to="/order_tracker">
+        <Link style={{ color: "lightgray" }} to="/route_tracker">
           &lt; Route Tracker
         </Link>
         <PageHeader headerTitle="Route Detail" />
