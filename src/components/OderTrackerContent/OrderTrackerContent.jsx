@@ -155,12 +155,12 @@ class OrderTrackerContent extends Component {
 
     return (
       <InnerContainerHOC>
-        <PageHeader headerTitle="Order Tracker" />
+        <PageHeader headerTitle="Route Tracker" />
 
         <div className={classes.ContentBody}>
           <input type="date" style={{ marginBottom: 15 }} />
           <MapComponent all_location_list={this.state.all_location_list} />
-          <div className={classes.OrderSectionHeader}>Order</div>
+          <div className={classes.OrderSectionHeader}>Route</div>
           <div className={classes.OrderSectionBody}>
             <div>
               <ComponentTable

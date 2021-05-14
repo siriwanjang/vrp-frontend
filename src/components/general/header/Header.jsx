@@ -18,11 +18,11 @@ class Header extends Component {
             <span>Home</span>
           </Link>
           <Link to="/order_tracker" className={classes.NavItem}>
-            <span>Order</span>
+            <span>Route</span>
           </Link>
-          <Link to="#" className={classes.NavItem}>
+          {/* <Link to="#" className={classes.NavItem}>
             <span>Result</span>
-          </Link>
+          </Link> */}
           <div
             className={[classes.RightNav, classes.UserItem].join(" ")}
             onClick={() => {

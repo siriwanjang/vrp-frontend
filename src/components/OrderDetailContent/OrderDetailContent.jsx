@@ -97,9 +97,9 @@ class OrderDetailContent extends Component {
     return (
       <InnerContainerHOC>
         <Link style={{ color: "lightgray" }} to="/order_tracker">
-          &lt; Order Tracker
+          &lt; Route Tracker
         </Link>
-        <PageHeader headerTitle="Order Detail" />
+        <PageHeader headerTitle="Route Detail" />
 
         <MapComponent all_location_list={this.state.all_location_list} />
         <div style={{ paddingBottom: 50 }}>
@@ -107,7 +107,7 @@ class OrderDetailContent extends Component {
             <Button color="success">Start</Button>
           </div>
 
-          <Section sectionTitle="Order Detail">
+          <Section sectionTitle="Route Detail">
             <table style={{ marginLeft: 20 }}>
               <tbody>
                 <tr>
