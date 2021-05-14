@@ -61,9 +61,10 @@ class OrderDetailContent extends Component {
     if (typeof this.state.all_location_list === "object") {
       const location_list = this.state.all_location_list[0].location_list;
       location_list.sort((a, b) => a.sequence - b.sequence);
-      console.log(location_list);
+      // console.log(location_list);
       location_elem = location_list.map((e_loc, index) => (
         <LocationDetail
+          key={index}
           seq_num={index + 1}
           location_name={e_loc.location.location_name}
           arrive_at={Util.datetime_converter(e_loc.arrive_time)}
