@@ -5,9 +5,10 @@ class LocationDetail extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
-        <div style={{ marginLeft: 20 }}>
-          {this.props.seq_num}. {this.props.location_name}
+      <div style={{ marginBottom: 20 }}>
+        <div style={{ marginLeft: 20, fontSize: 18 }}>
+          <span>{this.props.seq_num}.</span>
+          <span style={{ marginLeft: 20, fontWeight: "bold" }}>{this.props.location_name}</span>
         </div>
         <table style={{ marginLeft: 40 }}>
           <tr>
