@@ -165,13 +165,13 @@ class OrderTrackerContent extends Component {
             <div>
               <ComponentTable
                 head={[
-                  { type: "checkbox", text: "" },
+                  { type: "", text: "" },
                   { type: "text", text: "Color" },
                   { type: "text", text: "Route No." },
                   { type: "text", text: "Node" },
                   { type: "text", text: "Distance" },
                   { type: "text", text: "ETC." },
-                  { type: "text", text: "Route Create Date" },
+                  { type: "text", text: "Create Date" },
                   { type: "text", text: "" },
                 ]}
                 body={tbody_order}
