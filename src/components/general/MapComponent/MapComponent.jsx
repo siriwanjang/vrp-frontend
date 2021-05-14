@@ -15,7 +15,7 @@ class MapComponent extends Component {
     // }
     if (Array.isArray(location_list) === true) {
       for (let e_order of location_list) {
-        console.log(e_order);
+        // console.log(e_order);
         if (e_order.is_show === true) {
           const lat_long_arr = [];
           for (let e_loc of e_order.location_list) {
@@ -25,7 +25,7 @@ class MapComponent extends Component {
               lat: e_loc.location.location_lat,
             });
           }
-          console.log(lat_long_arr);
+          // console.log(lat_long_arr);
           const polyline = new longdo.Polyline(lat_long_arr, {
             title: "Polyline",
             detail: "-",
