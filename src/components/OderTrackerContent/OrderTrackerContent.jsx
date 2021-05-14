@@ -178,7 +178,7 @@ class OrderTrackerContent extends Component {
               />
             </div>
           </div>
-          <div className={classes.OrderSectionHeader}>Delivering</div>
+          {/* <div className={classes.OrderSectionHeader}>Delivering</div>
           <div className={classes.OrderSectionBody}>
             <div>
               <ComponentTable
@@ -193,7 +193,7 @@ class OrderTrackerContent extends Component {
                 body={deli_tbody}
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </InnerContainerHOC>
     );
