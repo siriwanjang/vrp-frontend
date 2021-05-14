@@ -151,14 +151,26 @@ class RouteTrackerContent extends Component {
       ));
     }
 
-    // console.log(deli_tbody);
+    const today_date = new Date();
+
+    const seperator = "-";
+    const tody_date_str = Util.datetime_converter(today_date, seperator)
+      .split(" ")[0]
+      .split(seperator)
+      .reverse()
+      .join(seperator);
+
+    console.log(tody_date_str);
 
     return (
       <InnerContainerHOC>
+        <Link style={{ color: "lightgray" }} to="/">
+          &lt; Home Page
+        </Link>
         <PageHeader headerTitle="Route Tracker" />
 
         <div className={classes.ContentBody}>
-          <input type="date" style={{ marginBottom: 15 }} />
+          <input type="date" style={{ marginBottom: 15 }} value={tody_date_str} />
           <MapComponent all_location_list={this.state.all_location_list} />
           <div className={classes.OrderSectionHeader}>Route</div>
           <div className={classes.OrderSectionBody}>
