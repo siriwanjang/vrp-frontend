@@ -83,9 +83,9 @@ class OrderDetailContent extends Component {
 
         <MapComponent all_location_list={this.state.all_location_list} />
         <div style={{ paddingBottom: 50 }}>
-          <div>
+          {/* <div>
             <Button color="success">Start</Button>
-          </div>
+          </div> */}
 
           <Section sectionTitle="Route Detail">
             <table style={{ marginLeft: 20 }}>
