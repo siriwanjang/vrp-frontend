@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Route, Switch } from "react-router-dom";
-import OrderTracker from "./container/OrderTrackerPage/OrderTrackerPage";
+import RouteTrackerPage from "./container/RouteTrackerPage/RouteTrackerPage";
 import OrderDetailPage from "./container/OrderDetailPage/OrderDetailPage";
 import LoginPage from "./container/LoginPage/LoginPage";
 import HomePage from "./container/HomePage/HomePage";
@@ -13,7 +13,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route path="/login" exact component={LoginPage} />
-          <Route path="/route_tracker" exact component={OrderTracker} />
+          <Route path="/route_tracker" exact component={RouteTrackerPage} />
           <Route path="/" exact component={HomePage} />
           <Route path="/route_detail" exact component={OrderDetailPage} />
         </Switch>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import api from "../../API";
 import Util from "../../assets/utility/Utility";
-import classes from "./OrderTrackerContent.module.css";
+import classes from "./RouteTrackerContent.module.css";
 
 import ColorPicker from "./color_picker/ColorPicker";
 
@@ -10,7 +10,7 @@ import PageHeader from "../General/PageHeader/PageHeader";
 import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
 import MapComponent from "../General/MapComponent/MapComponent";
 import ComponentTable from "./comp_table/ComponentTable";
-class OrderTrackerContent extends Component {
+class RouteTrackerContent extends Component {
   state = { order_list: null, deli_order: null, all_location_list: [] };
 
   getRandomColor() {
@@ -200,4 +200,4 @@ class OrderTrackerContent extends Component {
   }
 }
 
-export default OrderTrackerContent;
+export default RouteTrackerContent;

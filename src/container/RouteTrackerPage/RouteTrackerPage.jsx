@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import ContainerHOC from "../../components/General/ContainerHOC/ContainerHOC";
 import Header from "../../components/General/header/Header";
-import OrderTrackerContent from "../../components/OderTrackerContent/OrderTrackerContent";
+import RouteTrackerContent from "../../components/OderTrackerContent/RouteTrackerContent";
 
-class OrderTrackerPage extends Component {
+class RouteTrackerPage extends Component {
   state = {};
   render() {
     return (
       <ContainerHOC>
         <Header />
-        <OrderTrackerContent />
+        <RouteTrackerContent />
       </ContainerHOC>
     );
   }
 }
 
-export default OrderTrackerPage;
+export default RouteTrackerPage;
