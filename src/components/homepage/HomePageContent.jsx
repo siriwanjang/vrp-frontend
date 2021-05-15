@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
+import InnerContainerHOC from "../general/InnerContainerHOC/InnerContainerHOC";
 import { Link, Redirect } from "react-router-dom";
 import classes from "./HomePageContent.module.css";
-import PageHeader from "../General/PageHeader/PageHeader";
+import PageHeader from "../general/PageHeader/PageHeader";
 import Cookies from "universal-cookie";
 class HomePageContent extends Component {
   state = { is_logout: false };

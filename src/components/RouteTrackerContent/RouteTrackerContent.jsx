@@ -6,9 +6,9 @@ import classes from "./RouteTrackerContent.module.css";
 
 import ColorPicker from "./color_picker/ColorPicker";
 
-import PageHeader from "../General/PageHeader/PageHeader";
-import InnerContainerHOC from "../General/InnerContainerHOC/InnerContainerHOC";
-import MapComponent from "../General/MapComponent/MapComponent";
+import PageHeader from "../general/PageHeader/PageHeader";
+import InnerContainerHOC from "../general/InnerContainerHOC/InnerContainerHOC";
+import MapComponent from "../general/MapComponent/MapComponent";
 import ComponentTable from "./comp_table/ComponentTable";
 class RouteTrackerContent extends Component {
   state = {
@@ -84,7 +84,11 @@ class RouteTrackerContent extends Component {
     const selected_date = event.target.value;
     this.setState({ date_selected: event.target.value });
     api
-      .post("api", { api: "OrderAPI", method: "userGetOrderList", data: { date: selected_date } })
+      .post("api", {
+        api: "OrderAPI",
+        method: "userGetOrderList",
+        data: { date: selected_date },
+      })
       .then(this.renderOrderList);
   };
 
@@ -95,7 +99,9 @@ class RouteTrackerContent extends Component {
     const order_id = event.target.getAttribute("data-order-id");
     // console.log(is_check, order_id);
     // console.log(all_location_list);
-    const order_index = all_location_list.findIndex((elem) => elem.route_id == order_id);
+    const order_index = all_location_list.findIndex(
+      (elem) => elem.route_id == order_id
+    );
     // console.log(order_index);
     all_location_list[order_index].is_show = is_check;
     this.setState({ all_location_list: all_location_list });
@@ -113,7 +119,10 @@ class RouteTrackerContent extends Component {
     let tbody_order = null;
     if (Array.isArray(order_list) === true) {
       tbody_order = order_list.map((elem, index) => (
-        <tr key={elem.route_id} className={index % 2 === 0 ? classes.OddRow : null}>
+        <tr
+          key={elem.route_id}
+          className={index % 2 === 0 ? classes.OddRow : null}
+        >
           <td>
             <input
               type="checkbox"
@@ -157,7 +166,10 @@ class RouteTrackerContent extends Component {
     let deli_tbody;
     if (Array.isArray(deli_order_list) === true) {
       deli_tbody = deli_order_list.map((elem, index) => (
-        <tr key={elem.route_id} className={index % 2 === 0 ? classes.OddRow : null}>
+        <tr
+          key={elem.route_id}
+          className={index % 2 === 0 ? classes.OddRow : null}
+        >
           <td>{elem.route_id}</td>
           <td>{elem.node_count}</td>
           <td>{elem.distance}</td>

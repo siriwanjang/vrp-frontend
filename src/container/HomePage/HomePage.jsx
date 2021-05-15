@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import ContainerHOC from "../../components/General/ContainerHOC/ContainerHOC";
-import Header from "../../components/General/header/Header";
+import ContainerHOC from "../../components/general/ContainerHOC/ContainerHOC";
+import Header from "../../components/general/header/Header";
 import HomePageContent from "../../components/homepage/HomePageContent";
 import Cookies from "universal-cookie";
 import { Redirect } from "react-router";
