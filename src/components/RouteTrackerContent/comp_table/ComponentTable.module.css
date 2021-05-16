@@ -15,5 +15,9 @@
 
 .TableStyle > tbody td {
   text-align: center;
-  padding: 15px 0;
+  padding: 5px 0;
+}
+
+.TableStyle tr {
+  border: 1px solid #baa9a9;
 }

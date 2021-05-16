@@ -55,6 +55,8 @@ class RouteDetailContent extends Component {
       });
   }
   render() {
+    const padd_betw_row = { paddingBottom: 5 };
+
     let location_elem = [];
     // console.log("all_location_list", );
     if (typeof this.state.all_location_list === "object") {
@@ -70,6 +72,7 @@ class RouteDetailContent extends Component {
           depart_at={Util.datetime_converter(e_loc.depart_time)}
           service_time={e_loc.service_time}
           location_type={e_loc.location.location_type}
+          show_line={index !== location_list.length - 1}
         />
       ));
     }
@@ -86,52 +89,59 @@ class RouteDetailContent extends Component {
             <Button color="success">Start</Button>
           </div> */}
 
-          <Section sectionTitle="Route Detail">
+          <Section
+            sectionTitle="Route Detail"
+            add_style={{ backgroundColor: "rgb(248 248 248)", borderRadius: 10, padding: 20 }}
+          >
             <table style={{ marginLeft: 20 }}>
               <tbody>
                 <tr>
-                  <td>Number Of Node</td>
+                  <td style={{ ...padd_betw_row }}>Number Of Node</td>
                   <td
                     style={{
                       paddingLeft: 20,
                       fontWeight: "bold",
                       color: "#F5B900",
+                      ...padd_betw_row,
                     }}
                   >
                     {this.state.number_of_node}
                   </td>
                 </tr>
                 <tr>
-                  <td>Estimate Distance</td>
+                  <td style={{ ...padd_betw_row }}>Estimate Distance</td>
                   <td
                     style={{
                       paddingLeft: 20,
                       fontWeight: "bold",
                       color: "#F5B900",
+                      ...padd_betw_row,
                     }}
                   >
                     {this.state.total_distance}
                   </td>
                 </tr>
                 <tr>
-                  <td>Estimate Time To Complete</td>
+                  <td style={{ ...padd_betw_row }}>Estimate Time To Complete</td>
                   <td
                     style={{
                       paddingLeft: 20,
                       fontWeight: "bold",
                       color: "#F5B900",
+                      ...padd_betw_row,
                     }}
                   >
                     {this.state.total_time}
                   </td>
                 </tr>
                 <tr>
-                  <td>Order Create Date</td>
+                  <td style={{ ...padd_betw_row }}>Order Create Date</td>
                   <td
                     style={{
                       paddingLeft: 20,
                       fontWeight: "bold",
                       color: "#F5B900",
+                      ...padd_betw_row,
                     }}
                   >
                     {this.state.order_create_date}

@@ -23,14 +23,6 @@ class RouteTrackerContent extends Component {
       .join("-"),
   };
 
-  getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
   renderOrderList = (res) => {
     const result = res.data;
     if (result.status.success === true) {
@@ -40,7 +32,7 @@ class RouteTrackerContent extends Component {
       const tmp_all_loc_list = [];
       if (order_list.length > 0) {
         order_list.forEach((e_order, index) => {
-          const order_color = this.getRandomColor();
+          const order_color = Util.get_color_by_index(index);
           order_list[index].color = order_color;
           tmp_all_loc_list.push({
             route_id: e_order.route_id,
@@ -53,7 +45,7 @@ class RouteTrackerContent extends Component {
       }
       if (deli_order_list.length > 0) {
         deli_order_list.forEach((e_order, index) => {
-          const order_color = this.getRandomColor();
+          const order_color = Util.get_color_by_index(index);
           deli_order_list[index].color = order_color;
           tmp_all_loc_list.push({
             route_id: e_order.route_id,
@@ -99,9 +91,7 @@ class RouteTrackerContent extends Component {
     const order_id = event.target.getAttribute("data-order-id");
     // console.log(is_check, order_id);
     // console.log(all_location_list);
-    const order_index = all_location_list.findIndex(
-      (elem) => elem.route_id == order_id
-    );
+    const order_index = all_location_list.findIndex((elem) => elem.route_id == order_id);
     // console.log(order_index);
     all_location_list[order_index].is_show = is_check;
     this.setState({ all_location_list: all_location_list });
@@ -119,10 +109,7 @@ class RouteTrackerContent extends Component {
     let tbody_order = null;
     if (Array.isArray(order_list) === true) {
       tbody_order = order_list.map((elem, index) => (
-        <tr
-          key={elem.route_id}
-          className={index % 2 === 0 ? classes.OddRow : null}
-        >
+        <tr key={elem.route_id} className={index % 2 === 0 ? classes.OddRow : null}>
           <td>
             <input
               type="checkbox"
@@ -131,12 +118,12 @@ class RouteTrackerContent extends Component {
             />
           </td>
           <td>
-            <ColorPicker color={elem.color} />
+            <ColorPicker color={Util.get_color_by_index(index)} />
           </td>
           <td>{elem.route_id}</td>
           <td>{elem.node_num}</td>
-          <td>{elem.distance}</td>
-          <td>{elem.estimate_time}</td>
+          <td>{elem.distance} km.</td>
+          <td>{elem.estimate_time} min.</td>
           <td>{Util.datetime_converter(elem.create_date)}</td>
           <td>
             <Link to={`/route_detail?route_id=${elem.route_id}`}>
@@ -166,10 +153,7 @@ class RouteTrackerContent extends Component {
     let deli_tbody;
     if (Array.isArray(deli_order_list) === true) {
       deli_tbody = deli_order_list.map((elem, index) => (
-        <tr
-          key={elem.route_id}
-          className={index % 2 === 0 ? classes.OddRow : null}
-        >
+        <tr key={elem.route_id} className={index % 2 === 0 ? classes.OddRow : null}>
           <td>{elem.route_id}</td>
           <td>{elem.node_count}</td>
           <td>{elem.distance}</td>
