@@ -10,8 +10,8 @@ class LocationDetail extends Component {
         <div style={{ marginLeft: 20, marginBottom: 15, fontSize: 18 }}>
           <span
             style={{
-              height: 25,
-              width: 25,
+              height: 20,
+              width: 20,
               backgroundColor: "#F5B900",
               border: "1px solid #F5B900",
               borderRadius: "50%",
@@ -25,9 +25,9 @@ class LocationDetail extends Component {
                 borderLeft: "3px solid #F5B900",
                 // height: 130,
                 position: "absolute",
-                left: 31,
-                top: 3,
-                bottom: -23,
+                left: 28,
+                top: 6,
+                bottom: -27,
               }}
             ></div>
           ) : null}
