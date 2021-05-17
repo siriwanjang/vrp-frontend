@@ -8,6 +8,7 @@ const InnerContainerHOC = (props) => (
       backgroundColor: "white",
       overflow: "hidden",
       padding: "0 25px",
+      minHeight: "86vh",
     }}
   >
     {props.children}
