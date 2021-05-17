@@ -33,7 +33,7 @@ class MapComponent extends Component {
             lineWidth: 4,
             lineColor: e_order.color, //"rgba(255, 0, 0, 0.8)",
           });
-          for (let e_latlon of lat_long_arr) {
+          for (let [index, e_latlon] of lat_long_arr.entries()) {
             const lat = e_latlon.lat;
             const lon = e_latlon.lon;
             const dot = new longdo.Dot(
@@ -42,6 +42,7 @@ class MapComponent extends Component {
                 lon: lon,
               },
               {
+                label: (index === 0 ? "\n\n\n\n\n\n" : "") + index,
                 lineWidth: 15,
                 draggable: false,
                 lineColor: e_order.color,
