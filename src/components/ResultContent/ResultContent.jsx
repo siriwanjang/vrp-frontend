@@ -24,7 +24,25 @@ class ResultContent extends Component {
   render() {
     const tbody_order = (
       <tr>
-        <td colSpan={6}> Result Not Found </td>
+        <td>0</td>
+        <td>99</td>
+        <td>999 km.</td>
+        <td>999 min.</td>
+        <td>9999-99-99 99:99:99</td>
+        <td>
+          <Link to={`/result_detail`}>
+            <button
+              style={{
+                backgroundColor: "#6E5E5E",
+                color: "white",
+                border: "1px solid #6E5E5E",
+                padding: "3px 10px",
+              }}
+            >
+              VIEW
+            </button>
+          </Link>
+        </td>
       </tr>
     );
     return (
@@ -46,7 +64,6 @@ class ResultContent extends Component {
             <div>
               <ComponentTable
                 head={[
-                  { type: "", text: "" },
                   { type: "text", text: "Route No." },
                   { type: "text", text: "Node" },
                   { type: "text", text: "Distance" },
