@@ -5,6 +5,8 @@
   transform: translate(-50%, -50%);
   background-color: #f2c94c;
   display: flex;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .LoginTextInput {
