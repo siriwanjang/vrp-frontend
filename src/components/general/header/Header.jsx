@@ -20,9 +20,9 @@ class Header extends Component {
           <Link to="/route_tracker" className={classes.NavItem}>
             <span>Route</span>
           </Link>
-          {/* <Link to="#" className={classes.NavItem}>
+          <Link to="/result" className={classes.NavItem}>
             <span>Result</span>
-          </Link> */}
+          </Link>
           <div
             className={[classes.RightNav, classes.UserItem].join(" ")}
             onClick={() => {

@@ -5,6 +5,7 @@ import RouteTrackerPage from "./container/RouteTrackerPage/RouteTrackerPage";
 import RouteDetailPage from "./container/RouteDetailPage/RouteDetailPage";
 import LoginPage from "./container/LoginPage/LoginPage";
 import HomePage from "./container/HomePage/HomePage";
+import ResultPage from "./container/ResultPage/ResultPage";
 
 class App extends Component {
   state = {};
@@ -16,6 +17,7 @@ class App extends Component {
           <Route path="/route_tracker" exact component={RouteTrackerPage} />
           <Route path="/" exact component={HomePage} />
           <Route path="/route_detail" exact component={RouteDetailPage} />
+          <Route path="/result" exact component={ResultPage} />
         </Switch>
       </div>
     );
