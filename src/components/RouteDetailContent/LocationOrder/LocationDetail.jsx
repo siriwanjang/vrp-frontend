@@ -32,7 +32,9 @@ class LocationDetail extends Component {
             ></div>
           ) : null}
           {/* <span>{this.props.seq_num}.</span> */}
-          <span style={{ marginLeft: 20, fontWeight: "bold" }}>{this.props.location_name}</span>
+          <span style={{ marginLeft: 20, fontWeight: "bold", fontSize: 18 }}>
+            {this.props.location_name}
+          </span>
         </div>
         <table style={{ marginLeft: 80 }}>
           <tbody>
