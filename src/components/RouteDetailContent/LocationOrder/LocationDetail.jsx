@@ -8,17 +8,22 @@ class LocationDetail extends Component {
     return (
       <div style={{ marginBottom: 20, position: "relative" }}>
         <div style={{ marginLeft: 20, marginBottom: 15, fontSize: 18 }}>
-          <span
-            style={{
-              height: 20,
-              width: 20,
-              backgroundColor: "#F5B900",
-              border: "1px solid #F5B900",
-              borderRadius: "50%",
-              display: "inline-block",
-              verticalAlign: "middle",
-            }}
-          ></span>
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            <span
+              style={{
+                height: 20,
+                width: 20,
+                backgroundColor: "#F5B900",
+                border: "1px solid #F5B900",
+                borderRadius: "50%",
+                display: "inline-block",
+                verticalAlign: "middle",
+              }}
+            ></span>
+            <span style={{ marginLeft: 20, fontWeight: "bold", fontSize: 18 }}>
+              {this.props.location_name}
+            </span>
+          </div>
           {this.props.show_line === true ? (
             <div
               style={{
@@ -32,9 +37,6 @@ class LocationDetail extends Component {
             ></div>
           ) : null}
           {/* <span>{this.props.seq_num}.</span> */}
-          <span style={{ marginLeft: 20, fontWeight: "bold", fontSize: 18 }}>
-            {this.props.location_name}
-          </span>
         </div>
         <table style={{ marginLeft: 80 }}>
           <tbody>
