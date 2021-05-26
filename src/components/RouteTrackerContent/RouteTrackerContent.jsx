@@ -123,7 +123,7 @@ class RouteTrackerContent extends Component {
           <td>{elem.route_id}</td>
           <td>{elem.node_num}</td>
           <td>{elem.distance} km.</td>
-          <td>{elem.estimate_time} min.</td>
+          <td>{parstInt(elem.estimate_time) / 60} min.</td>
           <td>{Util.datetime_converter(elem.create_date)}</td>
           <td>
             <Link to={`/route_detail?route_id=${elem.route_id}`}>
