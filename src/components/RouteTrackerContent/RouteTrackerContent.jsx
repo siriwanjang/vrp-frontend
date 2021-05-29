@@ -124,7 +124,7 @@ class RouteTrackerContent extends Component {
           <td>{elem.node_num}</td>
           <td>{elem.distance} km.</td>
           <td>{(parseInt(elem.estimate_time) / 60).toFixed(2)} min.</td>
-          <td className="hidexs">{Util.datetime_converter(elem.create_date)}</td>
+          <td className={classes.hidexs}>{Util.datetime_converter(elem.create_date)}</td>
           <td>
             <Link to={`/route_detail?route_id=${elem.route_id}`}>
               <button
