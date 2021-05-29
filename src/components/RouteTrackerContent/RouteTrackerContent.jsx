@@ -101,30 +101,9 @@ class RouteTrackerContent extends Component {
     api
       .post("api", { api: "OrderAPI", method: "userGetOrderList", data: {} })
       .then(this.renderOrderList);
-    this.setState({ is_mobile: window.innerWidth <= 768 });
-    // console.log(window.innerWidth)
   }
 
   render() {
-    const head_col_desk = [
-      { type: "", text: "" },
-      { type: "text", text: "Color" },
-      { type: "text", text: "Route No." },
-      { type: "text", text: "Node" },
-      { type: "text", text: "Distance" },
-      { type: "text", text: "ETC." },
-      { type: "text", text: "Create Date" },
-      { type: "text", text: "" },
-    ];
-    const head_col_mobile = [
-      { type: "", text: "" },
-      { type: "text", text: "Color" },
-      { type: "text", text: "Route No." },
-      { type: "text", text: "Node" },
-      { type: "text", text: "Distance" },
-      { type: "text", text: "ETC." },
-      { type: "text", text: "" },
-    ];
     const { order_list, deli_order_list } = this.state;
 
     let tbody_order = null;
@@ -145,7 +124,7 @@ class RouteTrackerContent extends Component {
           <td>{elem.node_num}</td>
           <td>{elem.distance} km.</td>
           <td>{(parseInt(elem.estimate_time) / 60).toFixed(2)} min.</td>
-          {this.state.is_mobile ? <td>{Util.datetime_converter(elem.create_date)}</td> : null}
+          <td>{Util.datetime_converter(elem.create_date)}</td>
           <td>
             <Link to={`/route_detail?route_id=${elem.route_id}`}>
               <button
@@ -215,7 +194,16 @@ class RouteTrackerContent extends Component {
           <div className={classes.OrderSectionBody}>
             <div>
               <ComponentTable
-                head={this.state.is_mobile ? head_col_mobile : head_col_desk}
+                head={[
+                  { type: "", text: "" },
+                  { type: "text", text: "Color" },
+                  { type: "text", text: "Route No." },
+                  { type: "text", text: "Node" },
+                  { type: "text", text: "Distance" },
+                  { type: "text", text: "ETC." },
+                  { type: "text", text: "Create Date" },
+                  { type: "text", text: "" },
+                ]}
                 body={tbody_order}
               />
             </div>
