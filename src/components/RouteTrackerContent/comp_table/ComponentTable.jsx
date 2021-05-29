@@ -8,7 +8,11 @@ class ComponentTable extends Component {
       let ret_elem;
       switch (elem.type) {
         case "text":
-          ret_elem = <th key={index}>{elem.text}</th>;
+          ret_elem = (
+            <th className={elem.text === "Create Date" ? "hidexs" : ""} key={index}>
+              {elem.text}
+            </th>
+          );
           break;
         case "checkbox":
           ret_elem = (

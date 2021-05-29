@@ -32,3 +32,9 @@
 .OddRow {
   background-color: #f8f8f8;
 }
+
+@media only screen and (max-width: 768px) {
+  .hidexs {
+    display: none;
+  }
+}

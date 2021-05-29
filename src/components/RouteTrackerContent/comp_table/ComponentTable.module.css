@@ -21,3 +21,9 @@
 .TableStyle tr {
   border: 1px solid #baa9a9;
 }
+
+@media only screen and (max-width: 768px) {
+  .hidexs {
+    display: none;
+  }
+}
